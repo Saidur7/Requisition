@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Requisition.Models.Branch>
+
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List</h2>
+
+ <table class="table table-bordered">
+     <thead>
+         <tr>
+             <th>Id</th>
+             <th>Name</th>
+             <th>Address</th>
+             <th>Phone</th>
+             <th>Email</th>
+             <th>Is Main Branch</th>
+             <th>Is Active</th>
+             <th>Action</th>
+         </tr>
+     </thead>
+     <tbody>
+         @foreach (var branch in Model)
+         {
+
+             string mainbranch = branch.IsMainBranch == 1?"Yes":"No";
+
+             <tr>
+                 <td>@branch.Id</td>
+                 <td>@branch.Name</td>
+                 <td>@branch.Address</td>
+                 <td>@branch.Phone</td>
+                 <td>@branch.Email</td>
+                 <td>@mainbranch</td>
+                 <td>@branch.IsActive</td>
+                 <td>@Html.ActionLink("Details","Details",new {id=branch.Id })</td>
+             </tr>
+         }
+     </tbody>
+ </table>
